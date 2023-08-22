@@ -1,0 +1,24 @@
+name: MyProject
+
+entry_points:
+  main:
+    parameters:
+      batch: {type: float, default: 20}
+      conf: {type: str, default: configs/yolov6s_finetune.py}
+      data: {type: str, default: data/dataset.yaml}
+      eval-interval: {type: float, default: 5}
+      workers: {type: float, default: 0}
+      device: {type: float, default: 0}
+      eval-interval: {type: float, default: 5}
+    command: "python tools/train.py \
+    --batch {batch} --conf {conf} --data {data} --fuse_ab --device {device} \
+    --eval-interval {eval-interval} --workers {workers}" 
+  
+  infer:
+    parameters:
+      weights: {type: str, default: runs/train/exp39/weights/best_ckpt.pt}
+      source: {type: str, default: ../data/images/val/val0.jpg}
+      yaml: {type: str, default: data/dataset.yaml}
+      device: {type: float, default: 0}
+    command: "python tools/infer.py --weights {weights} --source {source} --yaml {yaml} --device {device}"
+
