@@ -356,13 +356,13 @@ class Trainer:
             )
 
         LOGGER.info(
-            f"Epoch: {self.epoch} | mAP@0.5: {results[0]} | mAP@0.50:0.95: {results[1]}"
+            f"Epoch: {self.epoch} | mAP/0.5: {results[0]} | mAP/0.50to0.95: {results[1]}"
         )
         self.evaluate_results = results[:2]
         # plot validation predictions
         self.plot_val_pred(vis_outputs, vis_paths)
         with mlflow.start_run():
-            mlflow.log_metrics({"mAP@0.5": results[0], "mAP@0.50:0.95": results[1]})
+            mlflow.log_metrics({"mAP/0.5": results[0], "mAP/0.50to0.95": results[1]})
 
     def before_train_loop(self):
         LOGGER.info("Training start...")
