@@ -1,11 +1,14 @@
 # Please insure that your custom_dataset are put in same parent dir with YOLOv6_DIR
-train: ../custom_dataset/images/train # train images
-val: ../custom_dataset/images/val # val images
-test: ../custom_dataset/images/test # test images (optional)
+train: ../data/preprocessed/images/train # train images
+val: ../data/preprocessed/images/val # val images
 
 # whether it is coco dataset, only coco dataset should be set to True.
 is_coco: False
 # Classes
-nc: 20  # number of classes
-names: ['aeroplane', 'bicycle', 'bird', 'boat', 'bottle', 'bus', 'car', 'cat', 'chair', 'cow', 'diningtable', 'dog',
-        'horse', 'motorbike', 'person', 'pottedplant', 'sheep', 'sofa', 'train', 'tvmonitor']  # class names
+nc: 41  # number of classes
+names: [ 'K-000250','K-000573','K-001866','K-001900','K-002483','K-003544','K-003743','K-004378',
+         'K-004543','K-005002','K-005094','K-005886','K-006192','K-006563','K-010224','K-012081',
+         'K-012778','K-013161','K-013395','K-016548','K-016551','K-018110','K-019552','K-019607',
+         'K-021026','K-021771','K-022362','K-022627','K-023223','K-024850','K-025438','K-027926',
+         'K-029345','K-029451','K-031705','K-033009','K-033208','K-037777','K-038954','K-044199',
+         'K-044834']
