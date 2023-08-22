@@ -128,12 +128,13 @@ class Trainer:
     # Training Process
     def train(self):
         try:
-            self.before_train_loop()
-            for self.epoch in range(self.start_epoch, self.max_epoch):
-                self.before_epoch()
-                self.train_one_epoch(self.epoch)
-                self.after_epoch()
-            self.strip_model()
+            with mlflow.start_run():
+                self.before_train_loop()
+                for self.epoch in range(self.start_epoch, self.max_epoch):
+                    self.before_epoch()
+                    self.train_one_epoch(self.epoch)
+                    self.after_epoch()
+                self.strip_model()
 
         except Exception as _:
             LOGGER.error("ERROR in training loop or eval/save model.")
@@ -282,8 +283,6 @@ class Trainer:
             )
             # save validation predictions to tensorboard
             write_tbimg(self.tblogger, self.vis_imgs_list, self.epoch, type="val")
-            with mlflow.start_run():
-                mlflow.log_params({"lr": self.scheduler.get_last_lr()[0]})
 
     def eval_model(self):
         if not hasattr(self.cfg, "eval_params"):
@@ -361,8 +360,7 @@ class Trainer:
         self.evaluate_results = results[:2]
         # plot validation predictions
         self.plot_val_pred(vis_outputs, vis_paths)
-        with mlflow.start_run():
-            mlflow.log_metrics({"mAP/0.5": results[0], "mAP/0.50to0.95": results[1]})
+        mlflow.log_metrics({"mAP/0.5": results[0], "mAP/0.50to0.95": results[1]})
 
     def before_train_loop(self):
         LOGGER.info("Training start...")
