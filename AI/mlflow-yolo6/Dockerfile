@@ -58,7 +58,6 @@ RUN micromamba create -qy -n base -f ./conda-linux-64.lock \
 RUN pip install --upgrade pip
 RUN pip install -r ./YOLOv6/requirements.txt
 
-
-# ENV HOME=/root/multidrug-management-system/AI/mlflow-yolo6
+RUN apt-get update && apt-get install ffmpeg libsm6 libxext6  -y
 
 CMD [ "/bin/bash" ]
