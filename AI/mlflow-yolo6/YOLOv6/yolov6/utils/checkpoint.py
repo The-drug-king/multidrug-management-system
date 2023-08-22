@@ -46,8 +46,7 @@ def save_checkpoint(ckpt, is_best, save_dir, model_name=""):
     if is_best:
         best_filename = osp.join(save_dir, "best_ckpt.pt")
         shutil.copyfile(filename, best_filename)
-        with mlflow.start_run():
-            mlflow.pytorch.log_state_dict(ckpt, artifact_path="checkpoint")
+        mlflow.pytorch.log_state_dict(ckpt, artifact_path="checkpoint")
 
 
 def strip_optimizer(ckpt_dir, epoch):
