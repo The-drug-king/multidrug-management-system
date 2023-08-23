@@ -7,6 +7,11 @@ import os.path as osp
 import mlflow
 from yolov6.utils.events import LOGGER
 from yolov6.utils.torch_utils import fuse_model
+from yolov6.layers.common import DetectBackend
+import sys
+
+sys.path.append("../utils/")
+from infer_utils import GhInfer
 
 
 def load_state_dict(weights, model, map_location=None):
@@ -47,6 +52,9 @@ def save_checkpoint(ckpt, is_best, save_dir, model_name=""):
         best_filename = osp.join(save_dir, "best_ckpt.pt")
         shutil.copyfile(filename, best_filename)
         mlflow.pytorch.log_state_dict(ckpt, artifact_path="checkpoint")
+        my_device = "cuda" if torch.cuda.is_available() else "cpu"
+        model = GhInfer(DetectBackend(best_filename, device=my_device))
+        mlflow.pytorch.log_model(model, artifact_path="model")
 
 
 def strip_optimizer(ckpt_dir, epoch):
