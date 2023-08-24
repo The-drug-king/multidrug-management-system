@@ -1,7 +1,7 @@
 import mlflow
 import cv2
-import sys
-from utils.draw_bbox import draw_bbox_array
+import argparse
+from YOLOv6.yolov6.utils.draw_bbox import draw_bbox_array
 
 
 def draw_box_img(image, result):
@@ -11,12 +11,22 @@ def draw_box_img(image, result):
 
 
 if __name__ == "__main__":
-    logged_model = "runs:/0019a6c0c56946ddbb0e05a5f7ff7080/model"
+    parser = argparse.ArgumentParser(description="infer")
+    parser.add_argument(
+        "--logged_model",
+        default="runs:/5e9df0e0be0e4b89a3d1caf9684f5a4d/model",
+        help="모델 경로",
+    )
+    parser.add_argument(
+        "--image_path",
+        default="data/preprocessed/images/val/val0.jpg",
+        help="이미지 경로",
+    )
+    args = parser.parse_args()
 
-    # Load model as a PyFuncModel.
-    loaded_model = mlflow.pyfunc.load_model(logged_model)
-    image = cv2.imread("data/preprocessed/images/val/val0.jpg")
+    loaded_model = mlflow.pyfunc.load_model(args.logged_model)
+    image = cv2.imread(args.image_path)
     result = loaded_model.predict(image)
 
     draw_box_img(image, result)
-    print("hi")
+    print("DONE")
