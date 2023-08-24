@@ -10,7 +10,9 @@ def draw_bbox_array(
     img_src,
     cat_id_path="data/preprocessed/cat_id_mapping.csv",
 ):
-    # img, img_src = result["img"], result["img_src"].astype(np.float32)
+    if isinstance(img_src, list):
+        img_src = np.array(img_src).astype(np.float32)
+
     img_ori, det = (img_src.copy()), torch.tensor(det)
     det[:, :4] = rescale(img_shape, det[:, :4], img_src.shape).round()
     for *xyxy, conf, cls in reversed(det):
