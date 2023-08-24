@@ -163,3 +163,4 @@ cython_debug/
 data/raw
 data/preprocessed
 mlruns
+draw_img.jpg
