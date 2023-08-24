@@ -1,9 +1,7 @@
 import mlflow
 import cv2
 import sys
-
-sys.path.insert(0, "utils")
-from draw_bbox import draw_bbox_array
+from utils.draw_bbox import draw_bbox_array
 
 
 def draw_box_img(image, result):
