@@ -1,6 +1,6 @@
 exp_name="drug_detection"
 batch=20
-conf="configs/yolov6s_finetune.py"
+conf="configs/yolov6n_finetune.py"
 data="data/dataset.yaml"
 eval_interval=5
 workers=0
