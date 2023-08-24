@@ -5,7 +5,7 @@ import torch
 import sys
 import cv2
 
-sys.path.insert(0, "YOLOv6")
+
 from yolov6.data.data_augment import letterbox
 from yolov6.utils.nms import non_max_suppression
 
@@ -62,7 +62,7 @@ class GhInfer(nn.Module):
 
 if __name__ == "__main__":
     from yolov6.layers.common import DetectBackend
-    from draw_bbox import draw_bbox_array
+    from YOLOv6.yolov6.utils.draw_bbox import draw_bbox_array
     import os
 
     os.environ["CUDA_VISIBLE_DEVICES"] = "1"
