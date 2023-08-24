@@ -25,10 +25,13 @@ class GhInfer(nn.Module):
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
 
     def forward(self, img):
-        if not isinstance(img, np.ndarray):
+        if torch.is_tensor(img):
+            img = np.array(img.cpu())
+        elif not isinstance(img, np.ndarray):
             img = np.array(img)
+
         img = img.astype(np.uint8)
-        img, img_src = self.process_image(img, self.img_size, self.stride, self.half)
+        img, _ = self.process_image(img, self.img_size, self.stride, self.half)
         if len(img.shape) == 3:
             img = img[None]
 
@@ -41,9 +44,11 @@ class GhInfer(nn.Module):
             self.agnostic_nms,
             max_det=self.max_det,
         )[0]
-        return {"det": det, "img": img, "img_src": img_src}
+        img_shape = torch.tensor([[*img.shape[2:], 0, 0, 0, 0]])
+        return torch.cat([det.cpu(), img_shape])
 
-    def process_image(self, img_src, img_size, stride, half):
+    @staticmethod
+    def process_image(img_src, img_size, stride, half):
         """Process image before image inference."""
         image = letterbox(img_src, img_size, stride=stride)[0]
         # Convert
