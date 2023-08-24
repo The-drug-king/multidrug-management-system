@@ -5,12 +5,14 @@ import cv2
 
 
 def draw_bbox_array(
-    result,
+    det,
+    img_shape,
+    img_src,
     cat_id_path="data/preprocessed/cat_id_mapping.csv",
 ):
-    img, img_src = result["img"], result["img_src"].astype(np.float32)
-    img_ori, det = (img_src.copy()), torch.tensor(result["det"])
-    det[:, :4] = rescale(img.shape[2:], det[:, :4], img_src.shape).round()
+    # img, img_src = result["img"], result["img_src"].astype(np.float32)
+    img_ori, det = (img_src.copy()), torch.tensor(det)
+    det[:, :4] = rescale(img_shape, det[:, :4], img_src.shape).round()
     for *xyxy, conf, cls in reversed(det):
         class_num = int(cls)
         try:
