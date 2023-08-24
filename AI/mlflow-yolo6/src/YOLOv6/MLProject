@@ -9,7 +9,6 @@ entry_points:
       eval-interval: {type: float, default: 5}
       workers: {type: float, default: 0}
       device: {type: float, default: 0}
-      eval-interval: {type: float, default: 5}
     command: "python tools/train.py \
     --batch {batch} --conf {conf} --data {data} --fuse_ab --device {device} \
     --eval-interval {eval-interval} --workers {workers}" 
