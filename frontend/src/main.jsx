@@ -1,29 +1,18 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
-import {
-  RouterProvider,
-  createBrowserRouter,
-  Routes,
-  Route,
-} from "react-router-dom"; // Routes 및 Route 가져오기
+import ReactDOM from "react-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignIn from "./components/SignIn.jsx";
 import SignUp from "./components/SignUp.jsx";
 import "./index.css";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: (
+ReactDOM.render(
+  <React.StrictMode>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<SignIn />} />
         <Route path="/SignUp" element={<SignUp />} />
       </Routes>
-    ),
-  },
-]);
-
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+    </BrowserRouter>
+  </React.StrictMode>,
+  document.getElementById("root")
 );
