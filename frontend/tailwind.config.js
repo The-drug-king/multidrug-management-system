@@ -6,11 +6,9 @@ export default {
   ],
   theme: {
     extend: {
-      colors: {
-
-      },
     },
   },
   plugins: [
+    require('@tailwindcss/aspect-ratio'),
   ],
 }
