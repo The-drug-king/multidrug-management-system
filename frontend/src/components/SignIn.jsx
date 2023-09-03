@@ -31,9 +31,9 @@ export function SignIn() {
     <>
       <div className="flex min-h-screen flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <img className="mx-auto h-10 w-auto" src={icon} alt="MMS" />
-          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            MMS Login
+          <img className="mx-auto h-12 w-auto" src={icon} alt="MMS" />
+          <h2 className="mt-10 text-center text-3xl font-bold leading-9 tracking-tight text-gray-900">
+            Login
           </h2>
         </div>
 
@@ -42,7 +42,7 @@ export function SignIn() {
             <div>
               <label
                 htmlFor="id"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block text-sm font-bold leading-6 text-gray-900"
               >
                 ID
               </label>
@@ -56,7 +56,7 @@ export function SignIn() {
                   onChange={handleIdChange}
                   required
                   style={{ paddingLeft: "10px" }}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -65,18 +65,10 @@ export function SignIn() {
               <div className="flex items-center justify-between">
                 <label
                   htmlFor="password"
-                  className="block text-sm font-medium leading-6 text-gray-900"
+                  className="block text-sm font-bold leading-6 text-gray-900"
                 >
                   Password
                 </label>
-                <div className="text-sm">
-                  <a
-                    href="#"
-                    className="font-semibold text-blue-600 hover:text-blue-500"
-                  >
-                    Forgot password?
-                  </a>
-                </div>
               </div>
               <div className="mt-2">
                 <input
@@ -88,7 +80,7 @@ export function SignIn() {
                   onChange={handlePasswordChange}
                   required
                   style={{ paddingLeft: "10px" }}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -96,7 +88,7 @@ export function SignIn() {
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md bg-blue-400 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                className="flex w-full justify-center rounded-md bg-gray-900 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"
               >
                 로그인
               </button>
@@ -107,7 +99,7 @@ export function SignIn() {
             아직 계정이 없으신가요?{" "}
             <Link
               to="/SignUp"
-              className="font-semibold leading-6 text-blue-600 hover:text-blue-500"
+              className="font-semibold leading-6 text-gray-900 hover:text-gray-500"
             >
               회원가입하기
             </Link>

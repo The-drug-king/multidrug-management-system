@@ -35,8 +35,8 @@ function SignUp() {
   return (
     <div className="flex min-h-screen flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <img className="mx-auto h-10 w-auto" src={icon} alt="MMS" />
-        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+        <img className="mx-auto h-12 w-auto" src={icon} alt="MMS" />
+        <h2 className="mt-10 text-center text-3xl font-bold leading-9 tracking-tight text-gray-900">
           Sign Up
         </h2>
       </div>
@@ -49,7 +49,7 @@ function SignUp() {
               onClick={() => handleUserTypeChange("medical")}
               className={`${
                 formData.userType === "medical"
-                  ? "bg-blue-400 text-white"
+                  ? "bg-gray-800 text-white"
                   : "bg-gray-200 text-gray-800"
               } py-1.5 px-4 rounded-md text-sm font-semibold`}
             >
@@ -60,7 +60,7 @@ function SignUp() {
               onClick={() => handleUserTypeChange("patient")}
               className={`${
                 formData.userType === "patient"
-                  ? "bg-blue-400 text-white"
+                  ? "bg-gray-800 text-white"
                   : "bg-gray-200 text-gray-800"
               } py-1.5 px-4 rounded-md text-sm font-semibold`}
             >
@@ -73,7 +73,7 @@ function SignUp() {
               <div key={fieldName}>
                 <label
                   htmlFor={fieldName}
-                  className="block text-sm font-medium leading-6 text-gray-900"
+                  className="block text-sm font-bold leading-6 text-gray-900"
                 >
                   {fieldName === "passwordConfirm"
                     ? "Confirm Password"
@@ -96,7 +96,7 @@ function SignUp() {
                     onChange={handleInputChange}
                     required
                     style={{ paddingLeft: "10px" }}
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
@@ -106,9 +106,9 @@ function SignUp() {
           <div>
             <button
               type="submit"
-              className="flex w-full justify-center rounded-md bg-blue-400 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+              className="flex w-full justify-center rounded-md bg-gray-900 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"
             >
-              Sign Up
+              회원가입
             </button>
           </div>
         </form>
@@ -117,7 +117,7 @@ function SignUp() {
           이미 계정이 있으신가요?{" "}
           <Link
             to="/"
-            className="font-semibold leading-6 text-blue-600 hover:text-blue-500"
+            className="font-semibold leading-6 text-gray-800 hover:text-gray-500"
           >
             로그인하기
           </Link>
