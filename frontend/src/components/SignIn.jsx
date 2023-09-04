@@ -14,16 +14,47 @@ export function SignIn() {
     setPassword(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault(); // 폼의 기본 동작인 새로고침을 막음
 
-    if (id === "id" && password === "pass") {
-      // 아이디와 비밀번호 체크
-      // 로그인 성공 시 MedicalsMain 페이지로 이동
-      // 아래 라인을 추가하여 페이지 이동 가능
-      window.location.href = "/MedicalsMain";
-    } else {
-      alert("ID와 비밀번호가 일치하지 않습니다.");
+    const apiUrl = "API_URL_HERE"; // 실제 백엔드 API 엔드포인트 URL로 변경
+
+    const headers = {
+      "Content-Type": "application/x-www-form-urlencoded",
+      Accept: "application/json",
+    };
+
+    const body = new URLSearchParams();
+    body.append("loginId", id);
+    body.append("password", password);
+
+    try {
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: headers,
+        body: body,
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("API 응답:", data);
+
+        // userType에 따라 페이지 리디렉션
+        if (data.userType === "medical") {
+          window.location.href = "/MedicalsMain/${data.userId}"; // MedicalsMain 페이지로 이동
+        } else if (data.userType === "patient") {
+          window.location.href = "/PatientMain/${data.userId}"; // PatientMain 페이지로 이동
+        } else {
+          // 다른 userType 처리
+          console.error("알 수 없는 userType:", data.userType);
+        }
+      } else {
+        console.error("API 요청 실패:", response.status);
+        alert("ID와 비밀번호가 일치하지 않습니다.");
+      }
+    } catch (error) {
+      console.error("API 요청 중 오류 발생:", error);
+      alert("API 요청 중 오류 발생");
     }
   };
 
