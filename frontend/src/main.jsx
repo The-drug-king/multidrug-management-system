@@ -6,6 +6,7 @@ import SignUp from "./components/SignUp.jsx";
 import MedicalsMain from "./components/MedicalsMain.jsx";
 import Header from "./components/Header.jsx";
 import PatientMain from "./components/PatientMain.jsx";
+import Post from "./components/PatientPost.jsx";
 import "./index.css";
 
 const root = createRoot(document.getElementById("root"));
@@ -19,6 +20,7 @@ root.render(
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/MedicalsMain" element={<MedicalsMain />} />
         <Route path="/PatientMain" element={<PatientMain />} />
+        <Route path="/Post" element={<Post />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

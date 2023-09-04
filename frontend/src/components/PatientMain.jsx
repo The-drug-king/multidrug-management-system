@@ -1,5 +1,6 @@
 import React from "react";
 import eximage from "../assets/example.png";
+import { Link } from "react-router-dom";
 
 const posts = [
   {
@@ -43,6 +44,7 @@ export default function PatientMain() {
           <p className="mt-2 text-lg leading-8 text-gray-600">
             약물 복용 분석 결과 리스트 입니다.
           </p>
+          <Link>분석하러 가기</Link>
         </div>
         <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
           {posts.map((post) => (
