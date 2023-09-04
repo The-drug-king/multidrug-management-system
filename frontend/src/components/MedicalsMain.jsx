@@ -90,7 +90,7 @@ const MedicalsMain = () => {
       >
         {filteredPeople.map((person) => (
           <li key={person.patientNumber} className="py-5">
-            <Link to={`/PatientMain/${person.patientId}`}>
+            <Link to={`/PatientMain`}>
               <div className="flex justify-center">
                 <form
                   className="border rounded-lg p-4"
