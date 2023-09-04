@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
-import "../styles/Header.css"; // CSS 파일 import
+import "../styles/Header.css";
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -15,15 +13,7 @@ const Header = () => {
       <div className="logo">MMS</div>
 
       <div className="user" onClick={handleLoginToggle}>
-        {isLoggedIn ? (
-          <>
-            <FontAwesomeIcon icon={faSignOutAlt} /> 로그아웃
-          </>
-        ) : (
-          <>
-            <FontAwesomeIcon icon={faUser} /> 로그인
-          </>
-        )}
+        {isLoggedIn ? <> 로그아웃</> : <>로그인</>}
       </div>
     </div>
   );
