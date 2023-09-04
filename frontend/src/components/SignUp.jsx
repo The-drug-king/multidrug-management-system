@@ -4,11 +4,20 @@ import icon from "../assets/pill.png";
 
 function SignUp() {
   const [formData, setFormData] = useState({
-    name: "",
-    id: "",
+    loginId: "",
     password: "",
-    passwordConfirm: "",
+    confirmPassword: "",
     birthday: "",
+    name: "",
+    userType: "",
+  });
+
+  const [formErrors, setFormErrors] = useState({
+    loginId: "",
+    password: "",
+    confirmPassword: "",
+    birthday: "",
+    name: "",
     userType: "",
   });
 
@@ -27,9 +36,61 @@ function SignUp() {
     });
   };
 
+  const validateForm = () => {
+    const errors = {
+      loginId: "",
+      password: "",
+      confirmPassword: "",
+      birthday: "",
+      name: "",
+      userType: "",
+    };
+
+    let isValid = true;
+
+    if (!formData.loginId) {
+      errors.loginId = "아이디를 입력하세요.";
+      isValid = false;
+    }
+
+    if (!formData.password) {
+      errors.password = "비밀번호를 입력하세요.";
+      isValid = false;
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      errors.confirmPassword = "비밀번호가 일치하지 않습니다.";
+      isValid = false;
+    }
+
+    if (!formData.name) {
+      errors.name = "이름을 입력하세요.";
+      isValid = false;
+    }
+
+    if (!formData.birthday) {
+      errors.birthday = "생년월일을 입력하세요.";
+      isValid = false;
+    }
+
+    if (!formData.userType) {
+      errors.userType = "사용자 유형을 선택하세요.";
+      isValid = false;
+    }
+
+    setFormErrors(errors);
+
+    return isValid;
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Form Data:", formData);
+
+    if (validateForm()) {
+      console.log("Form Data:", formData);
+    } else {
+      console.log("Form validation failed.");
+    }
   };
 
   return (
@@ -71,14 +132,14 @@ function SignUp() {
             </button>
           </div>
 
-          {["name", "id", "password", "passwordConfirm", "birthday"].map(
+          {["loginId", "password", "confirmPassword", "name", "birthday"].map(
             (fieldName) => (
               <div key={fieldName}>
                 <label
                   htmlFor={fieldName}
                   className="block text-sm font-bold leading-6 text-gray-900"
                 >
-                  {fieldName === "passwordConfirm"
+                  {fieldName === "confirmPassword"
                     ? "Confirm Password"
                     : fieldName.charAt(0).toUpperCase() + fieldName.slice(1)}
                 </label>
@@ -90,7 +151,7 @@ function SignUp() {
                       fieldName === "birthday"
                         ? "date"
                         : fieldName === "password" ||
-                          fieldName === "passwordConfirm"
+                          fieldName === "confirmPassword"
                         ? "password"
                         : "text"
                     }
@@ -102,6 +163,9 @@ function SignUp() {
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
                   />
                 </div>
+                {formErrors[fieldName] && (
+                  <p className="mt-2 text-red-600">{formErrors[fieldName]}</p>
+                )}
               </div>
             )
           )}
