@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import icon from "../assets/pill.png";
 
 function SignUp() {
+  // 초기 상태 및 오류 상태 설정
   const [formData, setFormData] = useState({
     loginId: "",
     password: "",
@@ -21,6 +22,7 @@ function SignUp() {
     userType: "",
   });
 
+  // 입력 값 변경 핸들러
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({
@@ -29,6 +31,7 @@ function SignUp() {
     });
   };
 
+  // 사용자 유형 변경 핸들러
   const handleUserTypeChange = (selectedType) => {
     setFormData({
       ...formData,
@@ -36,6 +39,7 @@ function SignUp() {
     });
   };
 
+  // 폼 유효성 검사
   const validateForm = () => {
     const errors = {
       loginId: "",
@@ -83,11 +87,39 @@ function SignUp() {
     return isValid;
   };
 
-  const handleSubmit = (event) => {
+  // 폼 제출 핸들러
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (validateForm()) {
-      console.log("Form Data:", formData);
+      const formDataToSend = new FormData();
+      formDataToSend.append("loginId", formData.loginId);
+      formDataToSend.append("password", formData.password);
+      formDataToSend.append("confirmPassword", formData.confirmPassword);
+      formDataToSend.append("birthday", formData.birthday);
+      formDataToSend.append("name", formData.name);
+      formDataToSend.append("userType", formData.userType);
+
+      console.log(formDataToSend);
+
+      try {
+        // API 호출
+        const response = await fetch("API_URL", {
+          method: "POST",
+          body: formDataToSend,
+        });
+
+        if (response.ok) {
+          // 성공적인 응답 처리
+          const data = await response.json();
+          console.log("API 응답:", data);
+        } else {
+          // 실패한 경우
+          console.error("API 요청 실패:", response.status);
+        }
+      } catch (error) {
+        console.error("API 요청 중 오류 발생:", error);
+      }
     } else {
       console.log("Form validation failed.");
     }
