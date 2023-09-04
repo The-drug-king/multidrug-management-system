@@ -15,13 +15,13 @@ export function SignIn() {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault();
-
-    console.log("ID:", id);
-    console.log("Password:", password);
+    event.preventDefault(); // 폼의 기본 동작인 새로고침을 막음
 
     if (id === "id" && password === "pass") {
-      alert("main으로 이동");
+      // 아이디와 비밀번호 체크
+      // 로그인 성공 시 MedicalsMain 페이지로 이동
+      // 아래 라인을 추가하여 페이지 이동 가능
+      window.location.href = "/MedicalsMain";
     } else {
       alert("ID와 비밀번호가 일치하지 않습니다.");
     }
