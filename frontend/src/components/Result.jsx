@@ -4,7 +4,7 @@ import eximage from "../assets/example.png";
 
 const Result = () => {
   const pillInfo = {
-    pillNames: "타이레놀" + "게보린",
+    pillNames: "타이레놀" + ", 게보린",
     pilldescripe: "어찌저찌",
     duplepill: "중복성분",
   };
