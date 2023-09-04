@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const people = [
@@ -53,50 +53,78 @@ const people = [
       "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
   },
 ];
-
 const MedicalsMain = () => {
-  return (
-    <ul
-      role="list"
-      className="divide-y divide-gray-100"
-      style={{ padding: "20px 30px 20px 20px" }}
-    >
-      {people.map((person) => (
-        <li key={person.patientNumber} className="py-5">
-          <Link to={`/PatientMain/${person.patientId}`}>
-            <div className="flex justify-center">
-              <form
-                className="border rounded-lg p-4"
-                style={{ minWidth: "650px" }}
-              >
-                <div className="flex min-w-0 gap-x-4">
-                  <img
-                    className="h-12 w-12 flex-none rounded-full bg-gray-50"
-                    src={person.imageUrl}
-                    alt=""
-                  />
+  const [searchTerm, setSearchTerm] = useState(""); // 검색어 상태 관리
 
-                  <div className="min-w-0 flex-auto">
-                    <p className="text-sm font-semibold leading-6 text-gray-900">
-                      {person.name}
-                    </p>
-                    <p className="mt-1 text-xs leading-5 text-gray-500">
-                      환자 ID: {person.patientId}
-                    </p>
-                    <p className="mt-1 text-xs leading-5 text-gray-500">
-                      Email: {person.email}
-                    </p>
-                    <p className="mt-1 text-xs leading-5 text-gray-500">
-                      Birth Year: {person.birthYear}
-                    </p>
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const filteredPeople = people.filter((person) =>
+    person.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  return (
+    <div>
+      <div
+        className="border rounded-lg mb-4 relative bg-gray-300 focus-within:border-black mx-auto"
+        style={{
+          maxWidth: "650px",
+          marginTop: "100px",
+          borderColor: "gray",
+        }}
+      >
+        <input
+          type="text"
+          placeholder="환자 이름 검색"
+          value={searchTerm}
+          onChange={handleSearch}
+          className="pl-4 pr-4 py-2 w-full rounded-lg bg-gray-200"
+        />
+      </div>
+
+      <ul
+        role="list"
+        className="divide-y divide-gray-100"
+        style={{ padding: "20px 30px 20px 20px" }}
+      >
+        {filteredPeople.map((person) => (
+          <li key={person.patientNumber} className="py-5">
+            <Link to={`/PatientMain/${person.patientId}`}>
+              <div className="flex justify-center">
+                <form
+                  className="border rounded-lg p-4"
+                  style={{ minWidth: "650px" }}
+                >
+                  <div className="flex min-w-0 gap-x-4">
+                    <img
+                      className="h-12 w-12 flex-none rounded-full bg-gray-50"
+                      src={person.imageUrl}
+                      alt=""
+                    />
+
+                    <div className="min-w-0 flex-auto">
+                      <p className="text-sm font-semibold leading-6 text-gray-900">
+                        {person.name}
+                      </p>
+                      <p className="mt-1 text-xs leading-5 text-gray-500">
+                        환자 ID: {person.patientId}
+                      </p>
+                      <p className="mt-1 text-xs leading-5 text-gray-500">
+                        Email: {person.email}
+                      </p>
+                      <p className="mt-1 text-xs leading-5 text-gray-500">
+                        Birth Year: {person.birthYear}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </form>
-            </div>
-          </Link>
-        </li>
-      ))}
-    </ul>
+                </form>
+              </div>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
