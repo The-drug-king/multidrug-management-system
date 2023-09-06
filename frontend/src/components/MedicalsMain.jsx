@@ -1,129 +1,184 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
-const people = [
-  {
-    name: "윤서영",
-    patientId: "id_123",
-    email: "michael.foster@example.com",
-    birthYear: "1999",
-    imageUrl:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  },
-  {
-    name: "허건혁",
-    patientId: "12345",
-    email: "michael.foster@example.com",
-    birthYear: "1999",
-    imageUrl:
-      "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  },
-  {
-    name: "김재윤",
-    patientId: "12345",
-    email: "michael.foster@example.com",
-    age: "43세",
-    imageUrl:
-      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    lastSeen: "30days ago",
-    lastSeenDateTime: "2023-09-03",
-  },
-  {
-    name: "이창희",
-    patientId: "12345",
-    email: "michael.foster@example.com",
-    birthYear: "1999",
-    imageUrl:
-      "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  },
-  {
-    name: "바다",
-    patientId: "12345",
-    email: "michael.foster@example.com",
-    birthYear: "1999",
-    imageUrl:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  },
-  {
-    name: "새우",
-    patientId: "12345",
-    email: "michael.foster@example.com",
-    birthYear: "1999",
-    imageUrl:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  },
-];
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
+import doctorbg from "../assets/images/doctorbg.jpg"; // 이미지 경로 수정
+import "../styles/MedicalsMain.css";
 const MedicalsMain = () => {
-  const [searchTerm, setSearchTerm] = useState(""); // 검색어 상태 관리
+  const [searchTerm, setSearchTerm] = useState("");
+  const [patients, setPatients] = useState([]);
+  const [newPatientId, setNewPatientId] = useState("");
+  const [isAddPatientFormVisible, setIsAddPatientFormVisible] = useState(false);
+
+  // 환자 데이터 example
+  const mockPatients = [
+    {
+      patientName: "윤서영",
+      patientId: "id_123",
+    },
+    {
+      patientName: "허건혁",
+      patientId: "12sd5",
+    },
+    {
+      patientName: "김재윤",
+      patientId: "1234fd5",
+    },
+    {
+      patientName: "이창희",
+      patientId: "1as345",
+    },
+    {
+      patientName: "바다",
+      patientId: "as2345",
+    },
+    {
+      patientName: "새우",
+      patientId: "1234vds5",
+    },
+  ];
+
+  useEffect(() => {
+    // fetch("/api/patients")
+    //   .then((response) => response.json())
+    //   .then((data) => setPatients(data))
+    //   .catch((error) => console.error("Error fetching patients:", error));
+
+    setPatients(mockPatients);
+  }, []);
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
   };
 
-  const filteredPeople = people.filter((person) =>
-    person.name.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredPatients = patients.filter(
+    (patient) =>
+      patient.patientName &&
+      patient.patientName.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const handleAddPatient = async () => {
+    try {
+      const response = await fetch("/api/add-patient", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({ followId: newPatientId }),
+      });
+
+      if (response.status === 200) {
+        // 성공 시 환자 목록 업데이트
+        const updatedPatients = [...patients];
+        updatedPatients.push({
+          patientName: `새 환자 ${newPatientId}`,
+          patientId: newPatientId,
+        });
+        setPatients(updatedPatients);
+        setNewPatientId(""); // 입력 필드 초기화
+        setIsAddPatientFormVisible(false); // 폼 숨김
+      } else {
+        console.error("Failed to add patient");
+      }
+    } catch (error) {
+      console.error("Error adding patient:", error);
+    }
+  };
 
   return (
     <div>
-      <div
-        className="border rounded-lg mb-4 relative bg-gray-300 focus-within:border-black mx-auto"
-        style={{
-          maxWidth: "650px",
-          marginTop: "100px",
-          borderColor: "gray",
-        }}
-      >
-        <input
-          type="text"
-          placeholder="환자 이름 검색"
-          value={searchTerm}
-          onChange={handleSearch}
-          className="pl-4 pr-4 py-2 w-full rounded-lg bg-gray-200"
-        />
+      <div className="medicals-main">
+        <h1>
+          "환자의 약물 복용 모니터링을 통해
+          <br />
+          당신의 보다 나은 진료를 지원합니다."
+        </h1>
+
+        <div className="input-container">
+          <input
+            type="text"
+            placeholder="환자 ID 입력"
+            value={newPatientId}
+            onChange={(e) => setNewPatientId(e.target.value)}
+          />
+          <button onClick={handleAddPatient}>
+            <FontAwesomeIcon icon={faPlus} className="mr-2" />
+            환자 추가
+          </button>
+        </div>
       </div>
 
-      <ul
-        role="list"
-        className="divide-y divide-gray-100"
-        style={{ padding: "20px 30px 20px 20px" }}
-      >
-        {filteredPeople.map((person) => (
-          <li key={person.patientNumber} className="py-5">
-            <Link to={`/PatientMain`}>
-              <div className="flex justify-center">
-                <form
-                  className="border rounded-lg p-4"
-                  style={{ minWidth: "650px" }}
-                >
-                  <div className="flex min-w-0 gap-x-4">
-                    <img
-                      className="h-12 w-12 flex-none rounded-full bg-gray-50"
-                      src={person.imageUrl}
-                      alt=""
-                    />
+      <div className="patient-list-container">
+        <h1 className="patient-list-title">My 환자 리스트 확인하기</h1>
+        <div
+          className="border rounded-lg mb-4 relative bg-gray-200 focus-within:border-gray mx-auto"
+          style={{
+            width: "80vw",
+            borderColor: "lightgray",
+            marginTop: "10%",
+          }}
+        >
+          <input
+            type="text"
+            placeholder="환자 이름 검색"
+            value={searchTerm}
+            onChange={handleSearch}
+            className="pl-4 pr-4 py-2 w-full rounded-lg bg-gray-200"
+          />
+        </div>
 
-                    <div className="min-w-0 flex-auto">
-                      <p className="text-sm font-semibold leading-6 text-gray-900">
-                        {person.name}
-                      </p>
-                      <p className="mt-1 text-xs leading-5 text-gray-500">
-                        환자 ID: {person.patientId}
-                      </p>
-                      <p className="mt-1 text-xs leading-5 text-gray-500">
-                        Email: {person.email}
-                      </p>
-                      <p className="mt-1 text-xs leading-5 text-gray-500">
-                        Birth Year: {person.birthYear}
-                      </p>
+        <ul
+          role="list"
+          className="flex flex-col divide-y divide-gray-100 justify-center items-center"
+        >
+          {filteredPatients.length === 0 && (
+            <li className="py-5 text-gray-500">검색 결과가 없습니다.</li>
+          )}
+          {filteredPatients.map((patient, index) => (
+            <li key={index} className="py-5">
+              <Link to={`/patient/${patient.patientId}`}>
+                <div className="flex justify-between items-center">
+                  <form
+                    className="border rounded-lg p-4"
+                    style={{ minWidth: "80vw" }}
+                  >
+                    <div className="flex min-w-0 gap-x-4">
+                      <div className="h-12 w-12 flex-none rounded-full bg-gray-100">
+                        <FontAwesomeIcon
+                          icon={faUser}
+                          className="h-8 w-12 text-gray-300"
+                        />
+                      </div>
+
+                      <div className="min-w-0 flex-auto">
+                        <p className="text-sm font-semibold leading-6 text-gray-900">
+                          {patient.patientName}
+                        </p>
+                        <p className="mt-1 text-xs leading-5 text-gray-500">
+                          환자 ID: {patient.patientId}
+                        </p>
+                      </div>
+
+                      <div className="flex-shrink-0">
+                        <button
+                          onClick={() =>
+                            openDeletePatientModal(patient.patientId)
+                          }
+                          className="text-red-500 hover:text-red-600 ml-2"
+                        >
+                          <FontAwesomeIcon icon={faTrash} />
+                          <span className="ml-1">환자 삭제</span>
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                </form>
-              </div>
-            </Link>
-          </li>
-        ))}
-      </ul>
+                  </form>
+                </div>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

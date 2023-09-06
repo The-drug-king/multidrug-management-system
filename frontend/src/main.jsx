@@ -20,10 +20,10 @@ root.render(
       <Header />
       <Routes>
         <Route path="/" element={<SignIn />} />
-        <Route path="/SignUp" element={<SignUp />} />
-        <Route path="/MedicalsMain" element={<MedicalsMain />} />
-        <Route path="/PatientMain" element={<PatientMain />} />
-        <Route path="/PatientPost" element={<PatientPost />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/medical" element={<MedicalsMain />} />
+        <Route path="/patient" element={<PatientMain />} />
+        <Route path="/patient/upload" element={<PatientPost />} />
         <Route path="/Result" element={<Result />} />
       </Routes>
     </BrowserRouter>

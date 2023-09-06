@@ -11,7 +11,7 @@ const Header = () => {
 
   const handleLogout = async () => {
     // 로그아웃 요청을 보낼 API 엔드포인트 URL
-    const logoutApiUrl = "API_LOGOUT_URL_HERE"; // 실제 로그아웃 API URL로 변경
+    const logoutApiUrl = "API_LOGOUT_URL_HERE";
 
     const headers = {
       "Content-Type": "application/json",
@@ -45,7 +45,7 @@ const Header = () => {
         {isLoggedIn ? (
           <button onClick={handleLogout}>로그아웃</button>
         ) : (
-          <Link to="/SignIn">로그인</Link>
+          <Link to="/">로그인</Link>
         )}
       </div>
     </div>
