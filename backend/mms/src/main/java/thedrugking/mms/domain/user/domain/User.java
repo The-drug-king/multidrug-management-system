@@ -2,17 +2,20 @@ package thedrugking.mms.domain.user.domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 import thedrugking.mms.domain.model.BaseEntity;
 
 import java.time.LocalDate;
 
 @Getter
+@Setter
 @Entity
 @DiscriminatorColumn
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "users")
 public abstract class User extends BaseEntity {
 
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
@@ -32,4 +35,6 @@ public abstract class User extends BaseEntity {
 
     @Column(name = "birthday", nullable = false)
     private LocalDate birthday;
+
+
 }

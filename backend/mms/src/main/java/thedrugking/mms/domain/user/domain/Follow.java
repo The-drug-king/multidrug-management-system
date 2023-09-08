@@ -8,7 +8,7 @@ import thedrugking.mms.domain.model.BaseEntity;
 
 @Getter
 @Entity
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class Follow extends BaseEntity {
 
     @Id
@@ -23,4 +23,12 @@ public class Follow extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "medical_person_id")
     private MedicalPerson medicalPerson;
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
+    public void setMedicalPerson(MedicalPerson medicalPerson) {
+        this.medicalPerson = medicalPerson;
+    }
 }
