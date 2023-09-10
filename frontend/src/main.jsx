@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import SignIn from "./components/SignIn.jsx";
 import SignUp from "./components/SignUp.jsx";
-import MedicalsMain from "./components/MedicalsMain.jsx";
+import Medical from "./components/Medical.jsx";
 import Header from "./components/Header.jsx";
 import PatientMain from "./components/PatientMain.jsx";
 import PatientPost from "./components/PatientPost.jsx";
@@ -21,7 +21,7 @@ root.render(
       <Routes>
         <Route path="/" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/medical" element={<MedicalsMain />} />
+        <Route path="/medical" element={<Medical />} />
         <Route path="/patient" element={<PatientMain />} />
         <Route path="/patient/upload" element={<PatientPost />} />
         <Route path="/Result" element={<Result />} />

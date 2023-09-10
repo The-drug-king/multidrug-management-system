@@ -48,7 +48,6 @@ const Result = () => {
         </dl>
       </div>
 
-      {/* "Go to main" 버튼을 추가하고 Link를 사용하여 PatientMain 페이지로 이동 */}
       <div className="mt-6">
         <Link to="/PatientMain" className="text-blue-500 hover:underline">
           Go to main

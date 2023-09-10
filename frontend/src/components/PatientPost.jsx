@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/PostPage.css";
 
-function Post() {
+function PatientPost() {
   const [imageSrc, setImageSrc] = useState("");
 
   const encodeFileToBase64 = (fileBlob) => {
@@ -44,4 +44,4 @@ function Post() {
   );
 }
 
-export default Post;
+export default PatientPost;
