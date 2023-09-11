@@ -2,13 +2,13 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import SignIn from "./components/SignIn.jsx";
-import SignUp from "./components/SignUp.jsx";
-import Medical from "./components/Medical.jsx";
+import SignIn from "./screens/SignIn.jsx";
+import SignUp from "./screens/SignUp.jsx";
+import Medical from "./screens/Medical.jsx";
 import Header from "./components/Header.jsx";
-import PatientMain from "./components/PatientMain.jsx";
-import PatientPost from "./components/PatientPost.jsx";
-import Result from "./components/Result";
+import PatientMain from "./screens/PatientMain.jsx";
+import PatientPost from "./screens/PatientPost.jsx";
+import Result from "./screens/Result";
 
 import "./index.css";
 
