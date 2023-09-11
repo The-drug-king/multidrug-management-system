@@ -7,16 +7,15 @@ const DeletePatientModal = ({
   isOpen,
   onClose,
   onDeletePatient,
-  patientId,
+  delPatientId,
 }) => {
   const cancelButtonRef = useRef(null);
 
   const handleDelete = () => {
-    console.log(patientId + " 환자를 삭제");
-    onDeletePatient(patientId); // 삭제할 환자의 ID를 onDeletePatient 함수로 전달
+    console.log(delPatientId + " 환자를 삭제");
+    onDeletePatient(delPatientId);
     onClose();
   };
-
   return (
     <Transition.Root show={isOpen} as={Fragment}>
       <Dialog
@@ -66,8 +65,8 @@ const DeletePatientModal = ({
                     </Dialog.Title>
                     <div className="mt-2">
                       <p className="text-sm text-gray-500">
-                        {patientId &&
-                          `'${patientId}' 환자를 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.`}
+                        {delPatientId &&
+                          `'${delPatientId}' 환자를 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.`}
                       </p>
                     </div>
                   </div>

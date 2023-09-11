@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -9,9 +9,11 @@ import DeletePatientModal from "../components/DeletePatientModal";
 function Medical() {
   const [searchTerm, setSearchTerm] = useState("");
   const [newPatientId, setNewPatientId] = useState("");
-  const [isAddPatientFormVisible, setIsAddPatientFormVisible] = useState(false);
-  const [isDeleteFormVisible, setIsDeleteFormVisible] = useState(false);
-  const [patientToDelete, setPatientToDelete] = useState("");
+  const [delPatientId, setDelPatientId] = useState("");
+
+  const [isAddPatientModalOpen, setIsAddPatientModalOpen] = useState(false);
+  const [isDeletePatientModalOpen, setIsDeletePatientModalOpen] =
+    useState(false);
 
   const [patients, setPatients] = useState([]);
 
@@ -49,34 +51,27 @@ function Medical() {
   );
 
   const handleAddPatient = (newPatientId) => {
-    // Add new patient logic here
-    // Update your patients state accordingly
-    // For example:
-    // setPatients([...patients, { patientName: "New Patient", patientId: newPatientId }]);
+    // Add new patient logic
   };
 
   const openAddPatientModal = () => {
-    setIsAddPatientFormVisible(true);
+    setIsAddPatientModalOpen(true);
   };
 
   const closeAddPatientModal = () => {
-    setIsAddPatientFormVisible(false);
+    setIsAddPatientModalOpen(false);
   };
 
-  const handleDeletePatient = (patientId) => {
-    // Delete patient logic here
-    // Update your patients state accordingly
-    // For example:
-    // setPatients(patients.filter((patient) => patient.patientId !== patientToDelete));
+  const handleDeletePatient = (delPatientId) => {
+    // Delete patient logic
   };
 
-  const openDeletePatientModal = (patientId) => {
-    setPatientToDelete(patientId);
-    setIsDeleteFormVisible(true);
+  const openDeletePatientModal = () => {
+    setIsDeletePatientModalOpen(true);
   };
 
   const closeDeletePatientModal = () => {
-    setIsDeleteFormVisible(false);
+    setIsDeletePatientModalOpen(false);
   };
 
   return (
@@ -128,6 +123,7 @@ function Medical() {
           {filteredPatients.length === 0 && (
             <li className="py-5 text-gray-500">검색 결과가 없습니다.</li>
           )}
+
           {filteredPatients.map((patient, index) => (
             <li key={index} className="py-5">
               <div className="flex justify-between items-center">
@@ -157,9 +153,10 @@ function Medical() {
 
                     <div className="flex-shrink-0">
                       <button
-                        onClick={() =>
-                          openDeletePatientModal(patient.patientId)
-                        }
+                        onClick={() => {
+                          setDelPatientId(patient.patientId);
+                          openDeletePatientModal();
+                        }}
                         className="text-red-700 hover:text-red-500 mt-1 text-sm font-semibold"
                       >
                         <FontAwesomeIcon icon={faTrash} />
@@ -175,17 +172,17 @@ function Medical() {
       </div>
 
       <AddPatientModal
-        isOpen={isAddPatientFormVisible}
+        isOpen={isAddPatientModalOpen}
         onClose={closeAddPatientModal}
         onAddPatient={handleAddPatient}
         newPatientId={newPatientId}
       />
 
       <DeletePatientModal
-        isOpen={isDeleteFormVisible}
+        isOpen={isDeletePatientModalOpen}
         onClose={closeDeletePatientModal}
-        onDeletePatient={() => handleDeletePatient(patientToDelete)}
-        patientIdToDelete={patientToDelete}
+        onDeletePatient={handleDeletePatient}
+        delpatientId={delPatientId}
       />
     </div>
   );
