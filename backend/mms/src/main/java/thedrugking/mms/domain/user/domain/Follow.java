@@ -23,4 +23,19 @@ public class Follow extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "medical_person_id")
     private MedicalPerson medicalPerson;
+
+    public static Follow createFollow(Patient patient, MedicalPerson medicalPerson) {
+        Follow follow = new Follow();
+        follow.setPatient(patient);
+        follow.setMedicalPerson(medicalPerson);
+        return follow;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
+    public void setMedicalPerson(MedicalPerson medicalPerson) {
+        this.medicalPerson = medicalPerson;
+    }
 }

@@ -2,6 +2,7 @@ package thedrugking.mms.domain.user.domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 import thedrugking.mms.domain.model.BaseEntity;
 
 import java.time.LocalDate;
@@ -13,6 +14,7 @@ import java.time.LocalDate;
 @Table(name = "users")
 public abstract class User extends BaseEntity {
 
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
@@ -32,4 +34,22 @@ public abstract class User extends BaseEntity {
 
     @Column(name = "birthday", nullable = false)
     private LocalDate birthday;
+
+
+    protected void setLoginId(String loginId) {
+        this.loginId = loginId;
+    }
+
+    protected void setPassword(String password) {
+        this.password = password;
+    }
+
+    protected void setName(String name) {
+        this.name = name;
+    }
+
+    protected void setBirthday(LocalDate birthday)
+    {
+        this.birthday = birthday;
+    };
 }
