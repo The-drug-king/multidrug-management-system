@@ -49,7 +49,7 @@ const Result = () => {
       </div>
 
       <div className="mt-6">
-        <Link to="/PatientMain" className="text-blue-500 hover:underline">
+        <Link to="/Patient" className="text-blue-500 hover:underline">
           Go to main
         </Link>
       </div>

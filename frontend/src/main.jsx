@@ -23,8 +23,8 @@ root.render(
         <Route path="/signup" element={<SignUp />} />
         <Route path="/medical" element={<Medical />} />
         <Route path="/patient" element={<PatientMain />} />
-        <Route path="/patient/upload" element={<PatientPost />} />
-        <Route path="/Result" element={<Result />} />
+        <Route path="/patient/post" element={<PatientPost />} />
+        <Route path="/patient/result" element={<Result />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
