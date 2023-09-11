@@ -1,0 +1,38 @@
+.header-container {
+    max-width: 1800px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    background-color: #000716;
+    height: 62px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+  
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  
+    .user {
+      font-size: 1rem;
+      padding: 1rem 2rem;
+      cursor: pointer;
+      position: absolute;
+      right: 5%;
+      display: flex;
+      align-items: center;
+      color: white;
+    }
+  
+    .user svg {
+      font-size: 1.5rem;
+      margin-right: 0.5rem;
+    }
+  }
+  

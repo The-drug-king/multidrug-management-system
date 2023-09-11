@@ -1,0 +1,63 @@
+/* MedicalsMain.css */
+
+.medicals-main {
+    background-image: url('../assets/images/doctorbg.jpg');
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 35vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 7%;
+    margin-top: 62px;
+  }
+  
+  .medicals-main h1 {
+    font-size: 1.8vw;
+    font-weight: bold;
+    margin-top: 5vw;
+  }
+  
+  .medicals-main .input-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+  
+  .medicals-main input[type="text"] {
+    padding: 10px;
+    width: 50%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1vw;
+  }
+  
+  .medicals-main button {
+    background-color: #333;
+    color: white;
+    font-size: 1vw;
+    font-weight: bold;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-left: 7px;
+  }
+  
+  .medicals-main button:hover {
+    background-color: #555;
+  }
+
+  .patient-list-container{
+    margin-top: 10%;
+  }
+  
+  .patient-list-title {
+    font-size: 2vw;
+    font-weight: bold;
+    margin-top: 10%;
+    text-align: center; 
+  }
+
