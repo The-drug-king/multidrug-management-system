@@ -35,7 +35,7 @@ function PatientPost() {
           />
           Upload Image
         </label>
-        <Link to="/result">
+        <Link to="/patient/result">
           {" "}
           <button className="custom-file-upload">분석 시작</button>
         </Link>

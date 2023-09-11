@@ -6,8 +6,9 @@ import SignIn from "./screens/SignIn.jsx";
 import SignUp from "./screens/SignUp.jsx";
 import Medical from "./screens/Medical.jsx";
 import Header from "./components/Header.jsx";
-import PatientMain from "./screens/PatientMain.jsx";
+import Patient from "./screens/Patient.jsx";
 import PatientPost from "./screens/PatientPost.jsx";
+import PatientFollow from "./screens/PatientFollow.jsx";
 import Result from "./screens/Result";
 
 import "./index.css";
@@ -22,7 +23,8 @@ root.render(
         <Route path="/" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/medical" element={<Medical />} />
-        <Route path="/patient" element={<PatientMain />} />
+        <Route path="/patient" element={<Patient />} />
+        <Route path="/patient/follow" element={<PatientFollow />} />
         <Route path="/patient/post" element={<PatientPost />} />
         <Route path="/patient/result" element={<Result />} />
       </Routes>
