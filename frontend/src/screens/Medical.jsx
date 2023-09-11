@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import "../styles/Medical.css";
+
 import AddPatientModal from "../components/AddPatientModal";
 import DeletePatientModal from "../components/DeletePatientModal";
 

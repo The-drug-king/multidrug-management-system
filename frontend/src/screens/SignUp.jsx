@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import icon from "../assets/pill.png";
+import icon from "../assets/images/pill.png";
 
 function SignUp() {
-  // 초기 상태 및 오류 상태 설정
   const [formData, setFormData] = useState({
     loginId: "",
     password: "",
@@ -87,10 +86,7 @@ function SignUp() {
     return isValid;
   };
 
-  // 폼 제출 핸들러
   const handleSubmit = async (event) => {
-    event.preventDefault();
-
     if (validateForm()) {
       const formDataToSend = new FormData();
       formDataToSend.append("loginId", formData.loginId);
@@ -142,9 +138,9 @@ function SignUp() {
           <div className="flex items-center justify-center space-x-4">
             <button
               type="button"
-              onClick={() => handleUserTypeChange("medical")}
+              onClick={() => handleUserTypeChange("medical_person")}
               className={`${
-                formData.userType === "medical"
+                formData.userType === "medical_person"
                   ? "bg-gray-800 text-white"
                   : "bg-gray-200 text-gray-800"
               } py-1.5 px-4 rounded-md text-sm font-semibold`}

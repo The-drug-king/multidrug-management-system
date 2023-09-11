@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import icon from "../assets/pill.png";
+import icon from "../assets/images/pill.png";
 
 export function SignIn() {
   const [id, setId] = useState("");
@@ -15,9 +15,9 @@ export function SignIn() {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault(); // 폼의 기본 동작인 새로고침을 막음
+    event.preventDefault();
 
-    const apiUrl = "API_URL_HERE"; // 실제 백엔드 API 엔드포인트 URL로 변경
+    const apiUrl = "API_URL";
 
     const headers = {
       "Content-Type": "application/x-www-form-urlencoded",
@@ -39,11 +39,10 @@ export function SignIn() {
         const data = await response.json();
         console.log("API 응답:", data);
 
-        // userType에 따라 페이지 리디렉션
-        if (data.userType === "medical") {
-          window.location.href = "/MedicalsMain/${data.userId}"; // MedicalsMain 페이지로 이동
+        if (data.userType === "medical_person") {
+          window.location.href = "/MedicalsMain/${data.userId}";
         } else if (data.userType === "patient") {
-          window.location.href = "/PatientMain/${data.userId}"; // PatientMain 페이지로 이동
+          window.location.href = "/PatientMain/${data.userId}";
         } else {
           // 다른 userType 처리
           console.error("알 수 없는 userType:", data.userType);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import eximage from "../assets/example.png";
+import eximage from "../assets/images/example.png";
 
 const posts = [
   {

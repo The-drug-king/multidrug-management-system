@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import eximage from "../assets/example.png";
+import eximage from "../assets/images/example.png";
 
 const Result = () => {
   const pillInfo = {
