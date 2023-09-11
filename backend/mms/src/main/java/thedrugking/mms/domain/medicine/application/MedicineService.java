@@ -50,6 +50,4 @@ public class MedicineService {
             throw new RuntimeException(e);
         }
     }
-
-
 }

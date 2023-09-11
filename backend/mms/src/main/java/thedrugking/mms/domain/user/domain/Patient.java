@@ -9,14 +9,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import thedrugking.mms.domain.medicine.domain.MedicineImage;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-@Setter
 @Entity
 @DiscriminatorValue("P")
-@NoArgsConstructor(access = AccessLevel.PUBLIC)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Patient extends User {
 
     @Getter
@@ -26,6 +26,15 @@ public class Patient extends User {
     @OneToMany(mappedBy = "patient")
     private List<MedicineImage> medicineImageList = new ArrayList<>();
 
+    @OneToMany
+    private List<MedicalPerson> medicalPersonList = new ArrayList<>();
+
+    public static Patient createPatient(String loginId, String password, String name, LocalDate birthday) {
+        Patient patient = new Patient();
+        patient.setLoginId(loginId);
+        patient.setPassword(password);
+        patient.setName(name);
+        patient.setBirthday(birthday);
+        return patient;
+    }
 }
-
-

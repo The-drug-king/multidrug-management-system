@@ -8,7 +8,6 @@ import thedrugking.mms.domain.model.BaseEntity;
 import java.time.LocalDate;
 
 @Getter
-@Setter
 @Entity
 @DiscriminatorColumn
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -37,4 +36,20 @@ public abstract class User extends BaseEntity {
     private LocalDate birthday;
 
 
+    protected void setLoginId(String loginId) {
+        this.loginId = loginId;
+    }
+
+    protected void setPassword(String password) {
+        this.password = password;
+    }
+
+    protected void setName(String name) {
+        this.name = name;
+    }
+
+    protected void setBirthday(LocalDate birthday)
+    {
+        this.birthday = birthday;
+    };
 }
